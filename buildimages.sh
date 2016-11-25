@@ -16,13 +16,19 @@
 
 ## BASE IMAGES ##
 
-cd java/7
-docker build -t netflixoss/java:7 .
-cd ../..
+#cd java/7
+#docker build -t netflixoss/java:7 .
+#cd ../..
+
+
+JAVA8_VERSION=`curl -v --silent https://javadl-esd-secure.oracle.com/update/1.8.0/map-m-1.8.0.xml 2>&1 | grep "au-descriptor-" | head -1 | sed -n 's/.*au-descriptor-\(.*\).xml.*/\1/p'`
+
 
 cd java/8
-docker build -t netflixoss/java:8 .
+docker build -t agorges/java8 -t agorges/java8:$JAVA8_VERSION .
 cd ../..
+
+exit
 
 cd tomcat/7
 docker build -t netflixoss/tomcat:7 .
